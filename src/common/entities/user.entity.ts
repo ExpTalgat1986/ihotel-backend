@@ -14,7 +14,7 @@ export class UserEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ length: 12 })
+  @Column({ length: 12, nullable: true })
   iin: string;
 
   @Column()
@@ -26,7 +26,7 @@ export class UserEntity extends BaseEntity {
   @Column()
   first_name: string;
 
-  @Column()
+  @Column({ nullable: true })
   last_name: string;
 
   @Column({ unique: true, length: 12 })
