@@ -10,6 +10,7 @@ import ormConfig from '../ormconfig';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { FoodCategoriesModule } from './modules/food-categories/food-categories.module';
 import { FoodsModule } from './modules/foods/foods.module';
+import { OrdersModule } from './modules/orders/orders.module';
 import * as path from 'path';
 
 @Module({
@@ -28,6 +29,7 @@ import * as path from 'path';
     AdvertisementsModule,
     FoodCategoriesModule,
     FoodsModule,
+    OrdersModule,
   ],
   controllers: [],
   providers: [],

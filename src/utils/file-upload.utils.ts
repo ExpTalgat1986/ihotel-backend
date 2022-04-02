@@ -8,6 +8,7 @@ export const SECTIONS_IMAGE_PATH = path.join(SAVE_IMG_PATH, 'sections');
 export const MAIN_LOGO_IMAGE_PATH = path.join(SAVE_IMG_PATH, 'main-logo');
 export const ADVERTISEMENT_BANNER_IMG_PATH = path.join(SAVE_IMG_PATH, 'ad-banner');
 export const FOOD_CATEGORY_IMG_PATH = path.join(SAVE_IMG_PATH, 'food-categories');
+export const FOOD_IMG_PATH = path.join(SAVE_IMG_PATH, 'foods');
 
 export type MulterFile = {
   fieldname: string;
