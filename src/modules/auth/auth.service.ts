@@ -38,10 +38,7 @@ export class AuthService {
     if (user) {
       throw new HttpException('Пользователь с таким номером не зарегистрирован', HttpStatus.BAD_REQUEST);
     }
-    await this.usersService.createUser(registerDto);
-    return {
-      message: 'Регистрация прошла успешна',
-    };
+    return await this.usersService.createUser(registerDto);
   }
 
   private async _comparePasswords(password: string, hashedPassword: string) {

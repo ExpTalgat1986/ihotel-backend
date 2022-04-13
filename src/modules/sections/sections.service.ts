@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import { checkIsFileNotEmpty } from '../../utils/file-upload.utils';
 import { CreateSectionDto } from './dto/create-section.dto';
 import { ChangeSectionDto } from './dto/change-section.dto';
+import { SERVER_URL } from '../../../config/common.config';
 
 @Injectable()
 export class SectionsService {
@@ -29,7 +30,7 @@ export class SectionsService {
     if (!section) throw new HttpException('Секция с данным ID не существует в базе', HttpStatus.BAD_REQUEST);
 
     if (image && image.size) {
-      section.image_url = `${savedImgFolder}/${image.filename}`;
+      section.image_url = `${SERVER_URL}/${savedImgFolder}/${image.filename}`;
     }
 
     Object.keys(changeSectionDto).forEach((key: string) => {
@@ -41,7 +42,7 @@ export class SectionsService {
 
   async createSection(image: Express.Multer.File, createSectionDto: CreateSectionDto, savedImgFolder: string) {
     checkIsFileNotEmpty(image);
-    const pathToImage = `${savedImgFolder}/${image.filename}`;
+    const pathToImage = `${SERVER_URL}/${savedImgFolder}/${image.filename}`;
     const section = this.sectionsRepo.create({ ...createSectionDto, image_url: pathToImage });
     return await this.sectionsRepo.save(section);
   }

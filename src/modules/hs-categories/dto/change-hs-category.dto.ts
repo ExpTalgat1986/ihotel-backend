@@ -1,19 +1,15 @@
 import { IsOptional, IsString } from 'class-validator';
 
-export class ChangeSectionDto {
+export class ChangeHsCategoryDto {
   @IsOptional()
   @IsString()
-  name_ru: string;
+  title_ru: string;
 
   @IsOptional()
   @IsString()
-  name_kk: string;
+  title_en: string;
 
   @IsOptional()
   @IsString()
-  name_en: string;
-
-  @IsOptional()
-  @IsString()
-  link: string;
+  title_kz: string;
 }

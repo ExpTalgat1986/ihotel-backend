@@ -24,4 +24,7 @@ export class RegisterDto {
   @IsString()
   @Length(12, 12)
   readonly iin: string;
+
+  @IsNotEmpty()
+  role_id: number;
 }

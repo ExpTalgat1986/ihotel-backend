@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { HotelServiceCategoryEntity } from './hotel-service-category.entity';
 
 @Entity('hotel_services')
 export class HotelServiceEntity {
@@ -32,6 +33,10 @@ export class HotelServiceEntity {
   @Column({ precision: 10, scale: 2, type: 'numeric' })
   price: number;
 
-  @Column()
-  is_available: boolean;
+  @Column({ type: 'boolean' })
+  is_available: boolean | string;
+
+  @ManyToOne(() => HotelServiceCategoryEntity, (hotelServiceCategory) => hotelServiceCategory.services)
+  @JoinColumn({ name: 'category_id' })
+  category: HotelServiceCategoryEntity;
 }

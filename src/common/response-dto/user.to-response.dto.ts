@@ -7,5 +7,6 @@ export const userToResponseDto = (user: UserEntity) => {
     iin: user.iin,
     phone_number: user.phone_number,
     created_at: user.created_at,
+    role: user.role,
   };
 };

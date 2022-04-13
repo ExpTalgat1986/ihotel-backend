@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import { CreateAdDto } from './dto/create-ad.dto';
 import { checkIsFileNotEmpty } from '../../utils/file-upload.utils';
 import { ChangeAdDto } from './dto/change-ad.dto';
+import { SERVER_URL } from '../../../config/common.config';
 
 @Injectable()
 export class AdvertisementsService {
@@ -18,7 +19,7 @@ export class AdvertisementsService {
 
   async createAd(image: Express.Multer.File, createAdDto: CreateAdDto, savedImgFolder: string) {
     checkIsFileNotEmpty(image);
-    const pathToImage = `${savedImgFolder}/${image.filename}`;
+    const pathToImage = `${SERVER_URL}/${savedImgFolder}/${image.filename}`;
     const ad = this.adRepo.create({ banner_img: pathToImage, banner_url: createAdDto.banner_url });
     return await this.adRepo.save(ad);
   }
@@ -30,7 +31,7 @@ export class AdvertisementsService {
     }
 
     if (image && image.size) {
-      ad.banner_img = `${savedImgFolder}/${image.filename}`;
+      ad.banner_img = `${SERVER_URL}/${savedImgFolder}/${image.filename}`;
     }
     Object.keys(changeAdDto).forEach((key: string) => {
       ad[key] = changeAdDto[key];

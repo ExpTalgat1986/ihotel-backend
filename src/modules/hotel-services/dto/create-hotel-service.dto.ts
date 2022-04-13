@@ -1,36 +1,36 @@
-import { IsOptional, IsString } from 'class-validator';
+import { IsNotEmpty, IsString } from 'class-validator';
 
-export class ChangeFoodDto {
-  @IsOptional()
+export class CreateHotelServiceDto {
+  @IsNotEmpty()
   category_id: number;
 
-  @IsOptional()
+  @IsNotEmpty()
   @IsString()
   title_ru: string;
 
-  @IsOptional()
+  @IsNotEmpty()
   @IsString()
   title_kz: string;
 
-  @IsOptional()
+  @IsNotEmpty()
   @IsString()
   title_en: string;
 
-  @IsOptional()
+  @IsNotEmpty()
   @IsString()
   description_ru: string;
 
-  @IsOptional()
+  @IsNotEmpty()
   @IsString()
   description_kz: string;
 
-  @IsOptional()
+  @IsNotEmpty()
   @IsString()
   description_en: string;
 
-  @IsOptional()
+  @IsNotEmpty()
   price: number;
 
-  @IsOptional()
+  @IsNotEmpty()
   is_available: boolean | string;
 }

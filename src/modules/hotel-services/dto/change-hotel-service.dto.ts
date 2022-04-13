@@ -1,6 +1,6 @@
 import { IsOptional, IsString } from 'class-validator';
 
-export class ChangeFoodDto {
+export class ChangeHotelServiceDto {
   @IsOptional()
   category_id: number;
 

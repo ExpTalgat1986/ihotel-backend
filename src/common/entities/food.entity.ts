@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { FoodCategoryEntity } from './food-category.entity';
 
 @Entity('foods')
 export class FoodEntity {
@@ -35,6 +36,10 @@ export class FoodEntity {
   @Column({ precision: 10, scale: 2, type: 'numeric' })
   price: number;
 
-  @Column()
-  is_available: boolean;
+  @Column({ type: 'boolean' })
+  is_available: boolean | string;
+
+  @ManyToOne(() => FoodCategoryEntity, (foodCategory) => foodCategory.foods)
+  @JoinColumn({ name: 'category_id' })
+  category: FoodCategoryEntity;
 }

@@ -4,10 +4,14 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import * as bcrypt from 'bcrypt';
+import { RoleEntity } from './role.entity';
 
 @Entity('users')
 export class UserEntity extends BaseEntity {
@@ -42,4 +46,8 @@ export class UserEntity extends BaseEntity {
   async hashPassword() {
     this.password = await bcrypt.hash(this.password, 5);
   }
+
+  @ManyToOne(() => RoleEntity, (role) => role.users)
+  @JoinColumn({ name: 'role_id' })
+  role: RoleEntity;
 }

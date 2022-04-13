@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import { SetSystemSettingsDto } from './dto/set-system-settings.dto';
 import { checkIsFileNotEmpty } from '../../utils/file-upload.utils';
 import { ChangeSystemSettingsDto } from './dto/change-system-settings.dto';
+import { SERVER_URL } from '../../../config/common.config';
 
 @Injectable()
 export class SystemSettingsService {
@@ -27,7 +28,7 @@ export class SystemSettingsService {
     }
 
     if (image && image.size) {
-      systemSettings.main_logo_url = `${savedImgFolder}/${image.filename}`;
+      systemSettings.main_logo_url = `${SERVER_URL}/${savedImgFolder}/${image.filename}`;
     }
 
     Object.keys(changeSystemSettingsDto).forEach((key: string) => {
@@ -50,7 +51,7 @@ export class SystemSettingsService {
 
     return await this.systemSettingsRepo.save({
       ...setSystemSettingsDto,
-      main_logo_url: `${savedImgFolder}/${image.filename}`,
+      main_logo_url: `${SERVER_URL}/${savedImgFolder}/${image.filename}`,
     });
   }
 }

@@ -1,4 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { FoodEntity } from "./food.entity";
+import { HotelServiceEntity } from "./hotel-service.entity";
 
 @Entity('hotel_service_categories')
 export class HotelServiceCategoryEntity {
@@ -16,4 +18,7 @@ export class HotelServiceCategoryEntity {
 
   @Column()
   title_kz: string;
+
+  @OneToMany(() => HotelServiceEntity, (hotelService) => hotelService.category)
+  services: HotelServiceEntity[];
 }

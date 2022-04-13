@@ -1,8 +1,7 @@
-import { IsBoolean, IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IsNotEmpty, IsString } from 'class-validator';
 
 export class CreateFoodDto {
   @IsNotEmpty()
-  @IsNumber()
   category_id: number;
 
   @IsNotEmpty()
@@ -30,10 +29,8 @@ export class CreateFoodDto {
   description_en: string;
 
   @IsNotEmpty()
-  @IsNumber()
   price: number;
 
   @IsNotEmpty()
-  @IsBoolean()
-  is_available: boolean;
+  is_available: boolean | string;
 }

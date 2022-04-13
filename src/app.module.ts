@@ -11,6 +11,8 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { FoodCategoriesModule } from './modules/food-categories/food-categories.module';
 import { FoodsModule } from './modules/foods/foods.module';
 import { OrdersModule } from './modules/orders/orders.module';
+import { HotelServicesModule } from './modules/hotel-services/hotel-services.module';
+import { HsCategoriesModule } from './modules/hs-categories/hs-categories.module';
 import * as path from 'path';
 
 @Module({
@@ -30,6 +32,8 @@ import * as path from 'path';
     FoodCategoriesModule,
     FoodsModule,
     OrdersModule,
+    HotelServicesModule,
+    HsCategoriesModule,
   ],
   controllers: [],
   providers: [],

@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import { CreateFoodCategoryDto } from './dto/create-food-category.dto';
 import { checkIsFileNotEmpty } from '../../utils/file-upload.utils';
 import { ChangeFoodCategoryDto } from './dto/change-food-category.dto';
+import { SERVER_URL } from '../../../config/common.config';
 
 @Injectable()
 export class FoodCategoriesService {
@@ -31,9 +32,9 @@ export class FoodCategoriesService {
     if (!foodCategory) throw new HttpException('Категория с таким ID отсутствует в базе', HttpStatus.BAD_REQUEST);
 
     if (image && image.size) {
-      foodCategory.image_url = `${savedImgFolder}/${image.filename}`;
+      foodCategory.image_url = `${SERVER_URL}/${savedImgFolder}/${image.filename}`;
     }
-    Object.keys(foodCategory).forEach((key: string) => {
+    Object.keys(changeCategoryDto).forEach((key: string) => {
       foodCategory[key] = changeCategoryDto[key];
     });
 
@@ -46,7 +47,7 @@ export class FoodCategoriesService {
     savedImgFolder: string,
   ) {
     checkIsFileNotEmpty(image);
-    const pathToImage = `${savedImgFolder}/${image.filename}`;
+    const pathToImage = `${SERVER_URL}/${savedImgFolder}/${image.filename}`;
     const foodCategory = this.foodCategoryRepo.create({ ...createFoodCategoryDto, image_url: pathToImage });
     return await this.foodCategoryRepo.save(foodCategory);
   }
