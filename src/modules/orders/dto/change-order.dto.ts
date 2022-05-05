@@ -5,6 +5,9 @@ export class ChangeOrderDto {
   guest_number: string;
 
   @IsOptional()
+  full_name: string;
+
+  @IsOptional()
   @IsNumber()
   total_sum: number;
 

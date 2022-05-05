@@ -13,4 +13,8 @@ export class SetSystemSettingsDto {
   @IsString()
   @IsPhoneNumber('KZ')
   concierge_phone: string;
+
+  @IsNotEmpty()
+  @IsString()
+  concierge_telegram: string;
 }

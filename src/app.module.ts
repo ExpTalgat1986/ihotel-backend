@@ -13,6 +13,10 @@ import { FoodsModule } from './modules/foods/foods.module';
 import { OrdersModule } from './modules/orders/orders.module';
 import { HotelServicesModule } from './modules/hotel-services/hotel-services.module';
 import { HsCategoriesModule } from './modules/hs-categories/hs-categories.module';
+import { OrderStatusesModule } from './modules/order-statuses/order-statuses.module';
+import { AdServicesModule } from './modules/ad-services/ad-services.module';
+import { AdServiceCategoriesModule } from './modules/ad-service-categories/ad-service-categories.module';
+import { MessagesModule } from './modules/messages/messages.module';
 import * as path from 'path';
 
 @Module({
@@ -34,6 +38,10 @@ import * as path from 'path';
     OrdersModule,
     HotelServicesModule,
     HsCategoriesModule,
+    OrderStatusesModule,
+    AdServicesModule,
+    AdServiceCategoriesModule,
+    MessagesModule,
   ],
   controllers: [],
   providers: [],

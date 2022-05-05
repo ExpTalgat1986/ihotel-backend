@@ -9,6 +9,9 @@ export class OrderEntity {
   @Column()
   guest_number: string;
 
+  @Column()
+  full_name: string;
+
   @Column({ type: 'jsonb' })
   order_list: Array<OrderListType>;
 

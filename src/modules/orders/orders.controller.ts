@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
 import { OrdersService } from './orders.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { ChangeOrderDto } from './dto/change-order.dto';
@@ -7,8 +7,13 @@ import { ChangeOrderDto } from './dto/change-order.dto';
 export class OrdersController {
   constructor(private readonly ordersService: OrdersService) {}
 
+  @Get('unhandled')
+  getUnhandledOrdersCount() {
+    return this.ordersService.getUnhandledOrdersCount();
+  }
+
   @Get()
-  getAllOrders(@Param('page') page: string) {
+  getAllOrders(@Query('page') page: string) {
     return this.ordersService.getAllOrders(page);
   }
 
@@ -20,5 +25,10 @@ export class OrdersController {
   @Put(':id')
   changeOrderData(@Param('id') id: string, @Body() changeOrderDto: ChangeOrderDto) {
     return this.ordersService.changeOrder(id, changeOrderDto);
+  }
+
+  @Delete(':id')
+  deleteOrder(@Param('id') id: string) {
+    return this.ordersService.deleteOrder(id);
   }
 }

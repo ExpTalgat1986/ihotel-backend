@@ -12,6 +12,9 @@ export const FOOD_IMG_PATH = path.join(SAVE_IMG_PATH, 'foods');
 export const HOTEL_SERVICE_IMG_PATH = path.join(SAVE_IMG_PATH, 'hotel-services');
 export const HOTEL_SERVICE_CATEGORY_IMG_PATH = path.join(SAVE_IMG_PATH, 'hotel-service-categories');
 
+export const AD_SERVICE_IMG_PATH = path.join(SAVE_IMG_PATH, 'ad-services');
+export const AD_SERVICE_CATEGORY_IMG_PATH = path.join(SAVE_IMG_PATH, 'ad-service-categories');
+
 export type MulterFile = {
   fieldname: string;
   originalname: string;
@@ -39,7 +42,7 @@ export const checkIsFileNotEmpty = (file: Express.Multer.File | undefined) => {
 };
 
 const imageFileFilter = (req: any, file: MulterFile, cb: (error: Error | null, acceptFile: boolean) => void) => {
-  if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
+  if (!file.originalname.match(/\.(jpg|jpeg|png|gif|svg)$/)) {
     return cb(new Error('Допустима загрузка только изображений!'), false);
   }
   cb(null, true);

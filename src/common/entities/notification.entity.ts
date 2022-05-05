@@ -23,6 +23,9 @@ export class NotificationEntity {
   @Column()
   text_en: string;
 
+  @Column({ default: false, type: 'boolean' })
+  is_read: boolean;
+
   @CreateDateColumn()
   created_at: Date;
 

@@ -8,12 +8,19 @@ import { ChangeOrderDto } from './dto/change-order.dto';
 
 @Injectable()
 export class OrdersService {
+  private readonly UNHANDLED_ORDER_STATUS_ID = 1;
+
   constructor(@InjectRepository(OrderEntity) private readonly ordersRepo: Repository<OrderEntity>) {}
+
+  async getUnhandledOrdersCount() {
+    return await this.ordersRepo.count({ where: { order_status_id: this.UNHANDLED_ORDER_STATUS_ID } });
+  }
 
   async getAllOrders(page: string) {
     const query = this.ordersRepo
       .createQueryBuilder('orders')
-      .leftJoin('orders_statuses', 'order_status', '"order_status".id = "orders".order_status_id');
+      .leftJoin('orders_statuses', 'order_status', '"order_status".id = "orders".order_status_id')
+      .orderBy('orders.created_at', 'DESC');
     return await getPaginatedData(query, page, defaultPerPage);
   }
 
@@ -22,8 +29,15 @@ export class OrdersService {
     if (!orderedProductsList.length) {
       throw new HttpException('Список заказа не может быть пустым', HttpStatus.BAD_REQUEST);
     }
-    const totalSum = orderedProductsList.reduce((accumulate, order) => accumulate + order.price * order.quantity, 0);
-    const order = this.ordersRepo.create({ ...createOrderDto, total_sum: totalSum });
+    const totalSum = orderedProductsList.reduce(
+      (accumulate, order) => accumulate + Number(order.price) * Number(order.quantity),
+      0,
+    );
+    const order = this.ordersRepo.create({
+      ...createOrderDto,
+      total_sum: totalSum,
+      order_status_id: this.UNHANDLED_ORDER_STATUS_ID,
+    });
     return await this.ordersRepo.save(order);
   }
 

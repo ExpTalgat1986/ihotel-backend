@@ -19,4 +19,7 @@ export class SystemSettingEntity {
 
   @Column()
   concierge_phone: string;
+
+  @Column({ default: '' })
+  concierge_telegram: string;
 }

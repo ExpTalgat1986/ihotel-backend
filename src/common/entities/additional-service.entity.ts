@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { AdditionalServiceCategoryEntity } from './additional-service-category.entity';
 
 @Entity('additional_services')
 export class AdditionalServiceEntity {
@@ -32,6 +33,10 @@ export class AdditionalServiceEntity {
   @Column({ precision: 10, scale: 2, type: 'numeric' })
   price: number;
 
-  @Column()
-  is_available: boolean;
+  @Column({ type: 'boolean' })
+  is_available: boolean | string;
+
+  @ManyToOne(() => AdditionalServiceCategoryEntity, (adServiceCategory) => adServiceCategory.services)
+  @JoinColumn({ name: 'category_id' })
+  category: AdditionalServiceCategoryEntity;
 }

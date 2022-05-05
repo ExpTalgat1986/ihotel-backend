@@ -11,6 +11,9 @@ export class MessageEntity {
   @Column()
   message: string;
 
+  @Column({ default: false, type: 'boolean' })
+  is_read: boolean;
+
   @CreateDateColumn()
   created_at: Date;
 

@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { AdditionalServiceEntity } from './additional-service.entity';
 
 @Entity('additional_service_categories')
 export class AdditionalServiceCategoryEntity {
@@ -19,4 +20,7 @@ export class AdditionalServiceCategoryEntity {
 
   @Column()
   title_kz: string;
+
+  @OneToMany(() => AdditionalServiceEntity, (adService) => adService.category)
+  services: AdditionalServiceEntity[];
 }

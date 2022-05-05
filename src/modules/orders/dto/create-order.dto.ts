@@ -1,9 +1,12 @@
-import { IsArray, IsNotEmpty, IsOptional } from 'class-validator';
+import { IsArray, IsNotEmpty } from 'class-validator';
 import { OrderListType } from '../../../common/types/order-list.type';
 
 export class CreateOrderDto {
-  @IsOptional()
+  @IsNotEmpty()
   guest_number: string;
+
+  @IsNotEmpty()
+  full_name: string;
 
   @IsNotEmpty()
   @IsArray()

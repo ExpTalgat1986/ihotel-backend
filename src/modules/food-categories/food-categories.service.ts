@@ -46,9 +46,9 @@ export class FoodCategoriesService {
     createFoodCategoryDto: CreateFoodCategoryDto,
     savedImgFolder: string,
   ) {
-    checkIsFileNotEmpty(image);
-    const pathToImage = `${SERVER_URL}/${savedImgFolder}/${image.filename}`;
-    const foodCategory = this.foodCategoryRepo.create({ ...createFoodCategoryDto, image_url: pathToImage });
+    // checkIsFileNotEmpty(image);
+    // const pathToImage = `${SERVER_URL}/${savedImgFolder}/${image.filename}`;
+    const foodCategory = this.foodCategoryRepo.create({ ...createFoodCategoryDto });
     return await this.foodCategoryRepo.save(foodCategory);
   }
 }
