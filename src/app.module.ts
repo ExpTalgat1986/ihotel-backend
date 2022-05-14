@@ -17,7 +17,9 @@ import { OrderStatusesModule } from './modules/order-statuses/order-statuses.mod
 import { AdServicesModule } from './modules/ad-services/ad-services.module';
 import { AdServiceCategoriesModule } from './modules/ad-service-categories/ad-service-categories.module';
 import { MessagesModule } from './modules/messages/messages.module';
+import { FcmModule } from './modules/fcm/fcm.module';
 import * as path from 'path';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
@@ -27,6 +29,7 @@ import * as path from 'path';
       exclude: ['/api*'],
       serveRoot: '/static',
     }),
+    ConfigModule.forRoot(),
     AuthModule,
     UsersModule,
     SystemSettingsModule,
@@ -42,6 +45,7 @@ import * as path from 'path';
     AdServicesModule,
     AdServiceCategoriesModule,
     MessagesModule,
+    FcmModule,
   ],
   controllers: [],
   providers: [],
