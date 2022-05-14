@@ -16,5 +16,6 @@ export class FcmController {
       },
     };
     await admin.messaging().send(message);
+    return true;
   }
 }
