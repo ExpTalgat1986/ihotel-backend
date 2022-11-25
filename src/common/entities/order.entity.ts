@@ -8,6 +8,9 @@ export class OrderEntity {
 
   @Column()
   guest_number: string;
+  
+   @Column()
+  comment: string;
 
   @Column()
   full_name: string;
